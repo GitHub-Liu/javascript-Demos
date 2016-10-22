@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	.box{
+		margin:200px auto;
+		width:200px;
+		height:40px;
+		background:#000;
+		color:#fff;
+		font:bold 30px/40px "宋体";
+		text-align:center;
+		text-decoration:line-through;
+		cursor:pointer;
+	}
+  </style>
+ </head>
+ <body>
+  <div class="box" id="dv">123ab</div>
+  <script>
+  var dv = document.getElementById("dv");
+	var arr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","s","t","u","v","w","x","y","z"]
+	dv.onclick = function(){
+		var result = "";
+		for(var i = 1;i<=5;i++){
+			var index = parseInt(Math.random()*arr.length);
+			result+=arr[index];
+		}
+		this.innerHTML = result;
+	}  
+  </script>
+ </body>
+</html>

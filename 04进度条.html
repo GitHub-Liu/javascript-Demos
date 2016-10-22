@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  
+ </body><style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	.box{
+		width:700px;
+		height:20px;
+		border:1px dotted #aaa;
+		position:absolute;
+		top:50%; 
+		margin-top:-10px;
+		left:50%;
+		margin-left:-350px;
+	}
+	span{
+		position:absolute;
+		right:0;
+		font-style:none;
+		color:red;
+		font-size:22px;
+		font-weight:bold;
+	}
+	.nav{
+		width:0px;
+		height:100%;
+		background-color:green;
+	}
+
+  </style>
+  <script>
+	/*
+		功能：获取指定节点样式属性的值
+		参数：dom 表示的指定的节点对象  propertyName 表示是样式属性名
+	 */
+
+	 function getStylePropertyValue(dom,propertyName){
+		//var dom,propertyName
+		if(window.getComputedStyle){
+			return getComputedStyle(dom,null)[propertyName];  
+		}else{  //IE
+			return dom.currentStyle[propertyName];
+		}
+		
+	 }
+	 window.onload = function(){
+		var box = document.getElementById("box");
+		var nav = document.getElementById("nav");
+		var s = document.getElementById("s");
+		var width = parseInt(getStylePropertyValue(box,"width"));
+		var length = width/100;
+		var count = 0;
+		var timeId = setInterval(function(){
+			var navwidth = parseInt(getStylePropertyValue(nav,"width"));
+			upwidth = navwidth + length;
+			count++;
+			nav.style.width = upwidth + "px";
+			s.innerHTML = count + "%";
+			if(count==100){
+				clearInterval(timeId);
+			}
+		},100);
+	 
+	 }
+
+
+  </script>
+ </head>
+ <body>
+	<div class="box" id="box">
+		<div class="nav"  id="nav"></nav>
+		<span id="s"></span>
+	</div>
+	
+ </body>
+</html>

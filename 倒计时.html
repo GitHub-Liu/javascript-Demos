@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	.box{
+		width:200px; 
+		height:200px; 
+		background:green;
+		margin:100px auto;
+	}
+	.box_num{
+		width:200px; 
+		height:150px; 
+		font:bold 14px/150px "宋体"; 
+		background:orange; 
+		text-align:center;
+	}
+	.box .btn{
+		width:200px; 
+		height:50px; 
+		font-size:22px;
+	}
+  </style>
+  <script>
+  function  result(now,future){
+	var time1 = now.getTime();
+	var time2 = future.getTime();
+	var times = time2-time1;
+	var seconds = parseInt(times/1000); //总秒
+	var second = seconds%60; //余下的是秒数
+	var minutes = parseInt(seconds/60); //总分
+	var minute = minutes%60; //余下的是分钟
+	var hours = parseInt(minutes/60); //总时
+	var hour = hours%24; //余下的是小时
+	var days = parseInt(hours/24); //总天数
+	var result = days + "日" + hour + "时" + minute +"分" + second + "秒"
+	return result;
+  } 
+	
+  
+  window.onload = function(){
+	var btn = document.getElementById("btn");
+	var box_num = document.getElementById("box_num");
+	var f = new Date("2016-08-15 22:22:22");			
+	var timeId; 
+	var flag = true;
+	btn.onclick = function(){
+		if(flag){
+			timeId = setInterval(function(){ 
+				var n = new Date();
+				box_num.innerHTML = result(n,f);
+			},1000);
+			btn.innerHTML = "停止";
+			flag = false;
+		}else{
+			clearInterval(timeId);
+			btn.innerHTML = "开始";
+			flag = true;
+		}
+	}
+  }
+  </script>
+ </head>
+ <body>
+	<div id="box" class="box">
+	 <div id="box_num" class="box_num">
+	 </div>
+	 <button id="btn" class="btn">开始</button>
+	</div>
+ </body>
+</html>
